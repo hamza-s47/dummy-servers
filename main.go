@@ -11,14 +11,14 @@ import (
 func main() {
 	args := os.Args[1:]
 	addr := ":9000"
-
-	router := gin.Default()
-
-	router.GET("/api/test", handlers.TestRoute)
-
 	if len(args) > 0 && args[0] != "" {
 		addr = args[0]
 	}
+
+	router := gin.Default()
+
+	router.GET("/api/test", handlers.TestRoute(addr))
+
 	if err := router.Run(addr); err != nil {
 		log.Fatalf("[Error] failed to start Gin server due to: %s", err.Error())
 	}

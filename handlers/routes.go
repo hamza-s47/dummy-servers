@@ -6,7 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func TestRoute(c *gin.Context) {
+func TestRoute(port string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "Test route working!!", "port": port})
+	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Test route working!!"})
 }
